@@ -1,0 +1,91 @@
+<div class="view-driver-container">
+  <div class="header-section">
+    <div class="title-section">
+      <h1 class="page-title">Driver Details</h1>
+      <p class="driver-name">{{ driver?.name }}</p>
+    </div>
+    <button class="back-btn" (click)="goBack()">
+      <span class="btn-icon">←</span>
+      <span class="btn-text">Go Back</span>
+    </button>
+  </div>
+
+  <div class="content-grid">
+    <div class="section-card">
+      <div class="card-header">
+        <h3 class="card-title">Driver Information</h3>
+      </div>
+      <div class="card-content">
+        <div class="info-row">
+          <span class="info-label">License Number:</span>
+          <span class="info-value">{{ driver?.maskedLicenseNumber }}</span>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Expiry Date:</span>
+          <div class="info-value-with-badge">
+            <span class="info-value">{{ driver?.licenseExpiryDate }}</span>
+            @if (driver?.licenseExpiringSoon) {
+              <span class="badge warning">Expiring Soon</span>
+            }
+          </div>
+        </div>
+        <div class="info-row">
+          <span class="info-label">Risk Level:</span>
+          <span class="risk-badge" 
+                [class.risk-high]="driver?.highRisk" 
+                [class.risk-normal]="!driver?.highRisk">
+            {{ driver?.highRisk ? 'High Risk' : 'Normal' }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="card-header">
+        <h3 class="card-title">Registered Vehicles</h3>
+      </div>
+      <div class="card-content">
+        <ul class="info-list">
+          @for (vehicle of driver?.vehicles; track vehicle.registrationNumber) {
+            <li class="list-item">
+              <div class="vehicle-info">
+                <span class="vehicle-number">{{ vehicle.registrationNumber }}</span>
+                <span class="vehicle-details">{{ vehicle.model }} ({{ vehicle.manufacturer }})</span>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="card-header">
+        <h3 class="card-title">Traffic Violations</h3>
+      </div>
+      <div class="card-content">
+        <ul class="info-list">
+          @for (violation of driver?.violations; track violation.type) {
+            <li class="list-item violation-item">
+              <div class="violation-info">
+                <span class="violation-type">{{ violation.type }}</span>
+                <span class="violation-date">Due: {{ violation.dueDate }}</span>
+              </div>
+
+              @if (violation.paid) {
+                <span class="badge paid">Paid</span>
+              } @else {
+                <div class="violation-actions">
+                  <span class="badge unpaid">Unpaid</span>
+                  <button class="pay-btn" (click)="changePath(violation.id)">
+                    <span class="btn-icon">💳</span>
+                    <span class="btn-text">Pay Fine</span>
+                  </button>
+                </div>
+              }
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

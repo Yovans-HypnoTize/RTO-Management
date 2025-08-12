@@ -1,0 +1,152 @@
+<div class="payment-wrapper">
+  <div class="payment-container">
+    <div class="payment-card">
+      <div class="card-header">
+        <h1 class="page-title">Pay Fine</h1>
+        <p class="page-subtitle">Choose your preferred payment method</p>
+      </div>
+      
+      <!-- Payment Options -->
+      <div class="payment-options">
+        <div class="option-group">
+          <label class="payment-option" [class.active]="selectedTab === 'card'">
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="card"
+              [checked]="selectedTab === 'card'"
+              (change)="selectTab('card')"
+            />
+            <span class="option-content">
+              <span class="option-icon">💳</span>
+              <span class="option-text">Credit/Debit Card</span>
+            </span>
+          </label>
+          
+          <label class="payment-option" [class.active]="selectedTab === 'upi'">
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="upi"
+              [checked]="selectedTab === 'upi'"
+              (change)="selectTab('upi')"
+            />
+            <span class="option-content">
+              <span class="option-icon">📱</span>
+              <span class="option-text">UPI</span>
+            </span>
+          </label>
+          
+          <label class="payment-option" [class.active]="selectedTab === 'netbanking'">
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="netbanking"
+              [checked]="selectedTab === 'netbanking'"
+              (change)="selectTab('netbanking')"
+            />
+            <span class="option-content">
+              <span class="option-icon">🏦</span>
+              <span class="option-text">Net Banking</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Payment Fields -->
+      <div class="payment-section">
+        @switch (selectedTab) {
+          @case ('card') {
+            <div class="form-content">
+              <div class="form-group">
+                <label for="cardNumber" class="form-label">Card Number</label>
+                <input 
+                  type="text" 
+                  id="cardNumber" 
+                  placeholder="1234 5678 9012 3456" 
+                  maxlength="19" 
+                  class="form-input"
+                />
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="expiry" class="form-label">Expiry Date</label>
+                  <input 
+                    type="text" 
+                    id="expiry" 
+                    placeholder="MM/YY" 
+                    maxlength="5" 
+                    class="form-input"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="cvv" class="form-label">CVV</label>
+                  <input 
+                    type="password" 
+                    id="cvv" 
+                    placeholder="***" 
+                    maxlength="3" 
+                    class="form-input"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="nameOnCard" class="form-label">Name on Card</label>
+                <input 
+                  type="text" 
+                  id="nameOnCard" 
+                  placeholder="Full Name" 
+                  class="form-input"
+                />
+              </div>
+            </div>
+          }
+
+          @case ('upi') {
+            <div class="form-content">
+              <div class="form-group">
+                <label for="upiId" class="form-label">UPI ID</label>
+                <input 
+                  type="text" 
+                  id="upiId" 
+                  placeholder="example@upi" 
+                  class="form-input"
+                />
+              </div>
+            </div>
+          }
+
+          @case ('netbanking') {
+            <div class="form-content">
+              <div class="form-group">
+                <label for="bank" class="form-label">Select Bank</label>
+                <select id="bank" class="form-input">
+                  <option value="">Choose your bank</option>
+                  <option value="sbi">State Bank of India</option>
+                  <option value="hdfc">HDFC Bank</option>
+                  <option value="icici">ICICI Bank</option>
+                  <option value="axis">Axis Bank</option>
+                </select>
+              </div>
+            </div>
+          }
+        }
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="form-actions">
+        <button type="button" class="cancel-btn" (click)="handleCancel()">
+          <span class="btn-icon">✕</span>
+          <span class="btn-text">Cancel</span>
+        </button>
+        <button type="button" class="pay-btn" (click)="payFine()">
+          <span class="btn-icon">💳</span>
+          <span class="btn-text">Pay Now</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+/* Global font settings */
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+}
+
+/* Ensure all headings use Roboto */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+}
+
+/* Ensure form elements use Roboto */
+input, textarea, select, button {
+  font-family: 'Roboto', sans-serif;
+}

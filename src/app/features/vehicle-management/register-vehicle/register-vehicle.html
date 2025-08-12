@@ -1,0 +1,86 @@
+<div class="register-vehicle-container">
+  <div class="form-card">
+    <div class="card-header">
+      <h1 class="page-title">Register Vehicle</h1>
+      <p class="page-subtitle">Add a new vehicle to the system</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form-content">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="registrationNumber" class="form-label">Registration Number</label>
+          <input
+            id="registrationNumber"
+            type="text"
+            formControlName="registrationNumber"
+            placeholder="Enter registration number"
+            class="form-input"
+          />
+          @if (isInvalid("registrationNumber")) {
+            <p class="error-message">{{ getErrorMessage("registrationNumber") }}</p>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="model" class="form-label">Model</label>
+          <input 
+            id="model"
+            type="text" 
+            formControlName="model" 
+            placeholder="Enter model" 
+            class="form-input"
+          />
+          @if (isInvalid("model")) {
+            <p class="error-message">{{ getErrorMessage("model") }}</p>
+          }
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="manufacturer" class="form-label">Manufacturer</label>
+          <input
+            id="manufacturer"
+            type="text"
+            formControlName="manufacturer"
+            placeholder="Enter manufacturer"
+            class="form-input"
+          />
+          @if (isInvalid("manufacturer")) {
+            <p class="error-message">{{ getErrorMessage("manufacturer") }}</p>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="ownerId" class="form-label">Owner</label>
+          <select 
+            id="ownerId"
+            formControlName="ownerId"
+            class="form-select"
+          >
+            <option value="" disabled selected hidden>Select Owner</option>
+            @for (driver of driverOptions; track driver.id) {
+            <option [value]="driver.id">
+              {{ driver.value }}
+            </option>
+            }
+          </select>
+          @if (isInvalid("ownerId")) {
+            <p class="error-message">{{ getErrorMessage("ownerId") }}</p>
+          }
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button type="submit" class="submit-btn">
+          <span class="btn-icon">✓</span>
+          <span class="btn-text">Register Vehicle</span>
+        </button>
+        <button type="button" class="back-btn" (click)="changePath()">
+          <span class="btn-icon">←</span>
+          <span class="btn-text">Go Back</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

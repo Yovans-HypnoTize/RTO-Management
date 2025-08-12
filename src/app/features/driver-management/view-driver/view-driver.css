@@ -1,0 +1,363 @@
+/* Main Container */
+.view-driver-container {
+  padding: 32px 48px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Header Section */
+.header-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.title-section {
+  flex: 1;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.driver-name {
+  font-size: 24px;
+  color: #666666;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Back Button */
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: #f8f9fa;
+  color: #1a1a1a;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.back-btn:hover {
+  background: #f1f3f4;
+  border-color: #dee2e6;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.back-btn:active {
+  transform: translateY(0);
+}
+
+.back-btn .btn-icon {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.back-btn .btn-text {
+  font-size: 14px;
+}
+
+/* Content Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+/* Section Cards */
+.section-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+  padding: 20px 24px;
+  background: #f8f9fa;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.card-content {
+  padding: 24px;
+}
+
+/* Information Rows */
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-weight: 500;
+  color: #666666;
+  font-size: 14px;
+}
+
+.info-value {
+  font-weight: 500;
+  color: #1a1a1a;
+  font-size: 14px;
+}
+
+.info-value-with-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Badges */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge.warning {
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffeaa7;
+}
+
+.badge.paid {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.badge.unpaid {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.risk-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.risk-high {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.risk-normal {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Lists */
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-item {
+  padding: 16px 0;
+  border-bottom: 1px solid #f8f9fa;
+  transition: all 0.2s ease;
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.list-item:hover {
+  background: #f8f9fa;
+  margin: 0 -24px;
+  padding: 16px 24px;
+}
+
+/* Vehicle Info */
+.vehicle-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.vehicle-number {
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 14px;
+}
+
+.vehicle-details {
+  color: #666666;
+  font-size: 13px;
+}
+
+/* Violation Items */
+.violation-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.violation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.violation-type {
+  font-weight: 600;
+  color: #1a1a1a;
+  font-size: 14px;
+}
+
+.violation-date {
+  color: #666666;
+  font-size: 13px;
+}
+
+.violation-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Pay Button */
+.pay-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pay-btn:hover {
+  background: #333333;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.pay-btn:active {
+  transform: translateY(0);
+}
+
+.pay-btn .btn-icon {
+  font-size: 14px;
+}
+
+.pay-btn .btn-text {
+  font-size: 13px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .view-driver-container {
+    padding: 24px 32px;
+  }
+  
+  .header-section {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  
+  .back-btn {
+    align-self: flex-start;
+  }
+}
+
+@media (max-width: 768px) {
+  .view-driver-container {
+    padding: 20px 24px;
+  }
+  
+  .page-title {
+    font-size: 28px;
+  }
+  
+  .driver-name {
+    font-size: 20px;
+  }
+  
+  .card-content {
+    padding: 20px;
+  }
+  
+  .info-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .violation-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  
+  .violation-actions {
+    align-self: stretch;
+    justify-content: space-between;
+  }
+}
+
+@media (max-width: 480px) {
+  .view-driver-container {
+    padding: 16px 20px;
+  }
+  
+  .page-title {
+    font-size: 24px;
+  }
+  
+  .back-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

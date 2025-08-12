@@ -1,0 +1,278 @@
+/* Main Container */
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  background: #f8f9fa;
+}
+
+/* Auth Card */
+.auth-card {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f0f0f0;
+  width: 100%;
+  max-width: 600px;
+  overflow: hidden;
+}
+
+/* Card Header */
+.card-header {
+  padding: 40px 40px 32px 40px;
+  text-align: center;
+  background: #f8f9fa;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.page-title {
+  font-size: 32px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.5px;
+}
+
+.page-subtitle {
+  font-size: 16px;
+  color: #666666;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+/* Form Content */
+.form-content {
+  padding: 32px 40px;
+}
+
+/* Form Rows */
+.form-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.form-row:last-of-type {
+  margin-bottom: 32px;
+}
+
+/* Form Groups */
+.form-group {
+  flex: 1;
+}
+
+/* Form Labels */
+.form-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  display: block;
+  letter-spacing: 0.2px;
+}
+
+/* Form Inputs */
+.form-input,
+.form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #1a1a1a;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.form-input:focus,
+.form-select:focus {
+  outline: none;
+  border-color: #1a1a1a;
+  box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.1);
+}
+
+.form-input::placeholder {
+  color: #999999;
+  font-weight: 400;
+}
+
+.form-input.error,
+.form-select.error {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+}
+
+/* Error Messages */
+.error-message {
+  color: #dc3545;
+  font-size: 13px;
+  margin-top: 8px;
+  font-weight: 500;
+}
+
+/* Form Actions */
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Submit Button */
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: #1a1a1a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.submit-btn:hover {
+  background: #333333;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+/* Secondary Button */
+.secondary-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  background: #f8f9fa;
+  color: #1a1a1a;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.secondary-btn:hover {
+  background: #e9ecef;
+  border-color: #dee2e6;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.secondary-btn:active {
+  transform: translateY(0);
+}
+
+/* Button Text */
+.btn-text {
+  font-size: 14px;
+}
+
+/* Auth Footer */
+.auth-footer {
+  padding: 24px 40px 32px 40px;
+  text-align: center;
+  background: #f8f9fa;
+  border-top: 1px solid #f0f0f0;
+}
+
+.footer-text {
+  font-size: 14px;
+  color: #666666;
+  margin: 0 0 8px 0;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  color: #1a1a1a;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.link-btn:hover {
+  color: #333333;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .register-container {
+    padding: 24px 20px;
+  }
+  
+  .auth-card {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+  
+  .card-header {
+    padding: 32px 24px 24px 24px;
+  }
+  
+  .form-content {
+    padding: 24px 24px;
+  }
+  
+  .auth-footer {
+    padding: 20px 24px 24px 24px;
+  }
+  
+  .page-title {
+    font-size: 28px;
+  }
+  
+  .form-row {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 20px 16px;
+  }
+  
+  .card-header {
+    padding: 24px 20px 20px 20px;
+  }
+  
+  .form-content {
+    padding: 20px 20px;
+  }
+  
+  .auth-footer {
+    padding: 16px 20px 20px 20px;
+  }
+  
+  .page-title {
+    font-size: 24px;
+  }
+  
+  .page-subtitle {
+    font-size: 15px;
+  }
+  
+  .form-input,
+  .form-select {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+}

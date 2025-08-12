@@ -1,0 +1,81 @@
+<div class="officer-list-container">
+  <div class="header-section">
+    <div class="title-section">
+      <h1 class="page-title">Officer Management</h1>
+      <p class="page-subtitle">View and manage all registered officers</p>
+    </div>
+    <button class="add-officer-btn" (click)="changePath()">
+      <span class="btn-icon">+</span>
+      <span class="btn-text">Add Officer</span>
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table class="officer-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Badge Number</th>
+          <th>Joining Date</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of officers; track $index) {
+        <tr class="table-row">
+          <td class="id-cell">{{ $index + 1 }}</td>
+          <td class="name-cell">
+            <div class="officer-info">
+              <div class="officer-avatar">{{ item.name.charAt(0).toUpperCase() }}</div>
+              <span class="officer-name">{{ item.name }}</span>
+            </div>
+          </td>
+          <td class="email-cell">{{ item.email }}</td>
+          <td class="badge-cell">
+            <span class="badge-number">{{ item.badgeNumber }}</span>
+          </td>
+          <td class="date-cell">{{ item.joiningDate }}</td>
+          <td class="role-cell">
+            <span class="role-badge" [class]="'role-' + item.role.toLowerCase()">
+              {{ item.role }}
+            </span>
+          </td>
+          <td class="actions-cell">
+            <button class="view-btn" title="View Details">
+              <span class="btn-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </span>
+              <span class="btn-text">View</span>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+    
+    @if (officers.length === 0) {
+    <div class="empty-state">
+      <div class="empty-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+          <circle cx="9" cy="7" r="4"></circle>
+          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+        </svg>
+      </div>
+      <h3 class="empty-title">No Officers Found</h3>
+      <p class="empty-message">Start by adding your first officer to the system</p>
+      <button class="empty-action-btn" (click)="changePath()">
+        <span class="btn-icon">+</span>
+        <span class="btn-text">Add First Officer</span>
+      </button>
+    </div>
+    }
+  </div>
+</div>

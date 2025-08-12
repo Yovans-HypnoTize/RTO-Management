@@ -1,0 +1,29 @@
+<div class="nav-wrapper">
+  <nav class="nav-container flex justify-between items-center">
+    <ul class="flex">
+      <li><a href="/" (click)="goToHome(); $event.preventDefault()">Home</a></li>
+      <li><a href="/drivers">Drivers</a></li>
+      <li><a href="/vehicles">Vehicles</a></li>
+      <li><a href="/violations">Violations</a></li>
+      <li><a href="/officers">Officers</a></li>
+    </ul>
+    <div class="profile-container">
+      <button class="profile-btn" (click)="toggleProfileMenu()">
+        <span class="profile-icon">👤</span>
+        <span class="profile-text">Profile</span>
+        <span class="dropdown-arrow">▼</span>
+      </button>
+      <div class="profile-dropdown" [class.show]="isProfileMenuOpen">
+        <div class="profile-info">
+          <div class="user-name">{{ currentUserName }}</div>
+          <div class="user-role">{{ currentUserRole }}</div>
+        </div>
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item" (click)="goToLogin()">
+          <span class="logout-icon">🚪</span>
+          Logout
+        </button>
+      </div>
+    </div>
+  </nav>
+</div>

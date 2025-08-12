@@ -1,0 +1,131 @@
+<div class="vehicle-container">
+  @if (loading) {
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Loading vehicles...</p>
+    </div>
+  } @else if (error) {
+    <div class="error-container">
+      <div class="error-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="15" y1="9" x2="9" y2="15"></line>
+          <line x1="9" y1="9" x2="15" y2="15"></line>
+        </svg>
+      </div>
+      <h2 class="error-title">Error Loading Vehicles</h2>
+      <p class="error-message">{{ error }}</p>
+      <button class="retry-btn" (click)="retry()">Try Again</button>
+    </div>
+  } @else {
+    <div class="header-section">
+      <div class="title-section">
+        <h1 class="page-title">Vehicles</h1>
+        <p class="page-subtitle">Manage and view all registered vehicles in the system</p>
+      </div>
+      <div class="actions-section">
+        <button class="toggle-btn" (click)="toggleUnpaidTax()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12,6 12,12 16,14"></polyline>
+          </svg>
+          {{ isShowingUnpaid ? "Show All Vehicles" : "Show Unpaid Tax" }}
+        </button>
+        <button class="add-vehicle-btn" (click)="changePath()">
+          <span class="btn-icon">+</span>
+          <span class="btn-text">Add Vehicle</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="vehicle-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            @if (!isShowingUnpaid) {
+              <th>Registration Number</th>
+              <th>Model</th>
+              <th>Manufacturer</th>
+              <th>Owner ID</th>
+              <th>Actions</th>
+            } @if (isShowingUnpaid) {
+              <th>Registration Number</th>
+              <th>Tax Expiry Date</th>
+              <th>Months Overdue</th>
+              <th>Original Amount</th>
+              <th>Late Fee</th>
+              <th>Has Violations</th>
+              <th>Owner Name</th>
+            }
+          </tr>
+        </thead>
+
+        <tbody>
+          @if ((!isShowingUnpaid && vehicles.length === 0) || (isShowingUnpaid && unpaidTaxDetails.length === 0)) {
+            <tr>
+              <td [attr.colspan]="isShowingUnpaid ? 8 : 6" class="empty-state">
+                <div class="empty-content">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="1" y="3" width="15" height="13"></rect>
+                    <polygon points="16,8 20,8 23,11 23,16 16,16 16,8"></polygon>
+                    <circle cx="5.5" cy="10.5" r=".5"></circle>
+                    <polyline points="7,10.5 10,10.5 10,13.5 7,13.5"></polyline>
+                  </svg>
+                  <h3>No Vehicles Found</h3>
+                  <p>{{ isShowingUnpaid ? 'No unpaid tax vehicles found.' : 'No vehicles registered yet.' }}</p>
+                </div>
+              </td>
+            </tr>
+          } @else {
+            <!-- Normal vehicle view -->
+            @if (!isShowingUnpaid) {
+              @for (item of vehicles; track $index) {
+                <tr>
+                  <td class="id-cell">{{ $index + 1 }}</td>
+                  <td class="registration-cell">{{ item.registrationNumber }}</td>
+                  <td class="model-cell">{{ item.model }}</td>
+                  <td class="manufacturer-cell">{{ item.manufacturer }}</td>
+                  <td class="owner-cell">{{ item.ownerId }}</td>
+                  <td class="actions-cell">
+                    <button
+                      type="button"
+                      class="view-btn"
+                      (click)="handleView(item.vehicleId)"
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                      </svg>
+                      <span class="btn-text">View</span>
+                    </button>
+                  </td>
+                </tr>
+              }
+            }
+
+            <!-- Unpaid tax view -->
+            @if (isShowingUnpaid) {
+              @for (item of unpaidTaxDetails; track $index) {
+                <tr>
+                  <td class="id-cell">{{ $index + 1 }}</td>
+                  <td class="registration-cell">{{ item.registrationNumber }}</td>
+                  <td class="tax-expiry-cell">{{ item.taxExpiryDate }}</td>
+                  <td class="months-overdue-cell">{{ item.monthsOverdue }}</td>
+                  <td class="amount-cell">{{ item.originalAmount | currency : "INR" }}</td>
+                  <td class="late-fee-cell">{{ item.lateFee | currency : "INR" }}</td>
+                  <td class="violations-cell">
+                    <span class="badge" [class]="item.hasViolations ? 'badge-warning' : 'badge-success'">
+                      {{ item.hasViolations ? "Yes" : "No" }}
+                    </span>
+                  </td>
+                  <td class="owner-name-cell">{{ item.ownerName }}</td>
+                </tr>
+              }
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
