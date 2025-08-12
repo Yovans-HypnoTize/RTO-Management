@@ -1,0 +1,103 @@
+<div class="view-vehicle-container">
+  <div class="vehicle-details-card">
+    <div class="card-header">
+      <h1 class="page-title">Vehicle Details</h1>
+      <p class="page-subtitle">Registration: {{ vehicle?.registrationNumber }}</p>
+    </div>
+
+    <div class="vehicle-info-section">
+      <div class="info-grid">
+        <div class="info-item">
+          <label class="info-label">Owner</label>
+          <span class="info-value">{{ vehicle?.ownerName || 'N/A' }}</span>
+        </div>
+        
+        <div class="info-item">
+          <label class="info-label">Model</label>
+          <span class="info-value">{{ vehicle?.model || 'N/A' }}</span>
+        </div>
+        
+        <div class="info-item">
+          <label class="info-label">Manufacturer</label>
+          <span class="info-value">{{ vehicle?.manufacturer || 'N/A' }}</span>
+        </div>
+        
+        <div class="info-item">
+          <label class="info-label">Cargo Type</label>
+          <span class="info-value">{{ vehicle?.cargoInfo || 'N/A' }}</span>
+        </div>
+        
+        <div class="info-item">
+          <label class="info-label">Tax Expiry</label>
+          <span class="info-value">{{ vehicle?.taxExpiryDate || 'N/A' }}</span>
+        </div>
+        
+        <div class="info-item">
+          <label class="info-label">Inspection Due</label>
+          <span class="info-value">{{ vehicle?.inspectionDueDate || 'N/A' }}</span>
+        </div>
+        
+        <div class="info-item">
+          <label class="info-label">Commercial</label>
+          <span class="info-value">{{ vehicle?.commercial ? "Yes" : "No" }}</span>
+        </div>
+        
+        <div class="info-item">
+          <label class="info-label">Tax Compliant</label>
+          <span class="info-value">{{ vehicle?.taxCompliant ? "Yes" : "No" }}</span>
+        </div>
+      </div>
+
+      @if (vehicle?.highViolationFlag) {
+        <div class="violation-alert">
+          <div class="alert-icon">⚠️</div>
+          <div class="alert-content">
+            <h3 class="alert-title">High Violations Flag</h3>
+            <p class="alert-description">This vehicle has multiple violations and requires immediate attention.</p>
+          </div>
+        </div>
+      }
+
+      @if (vehicle?.expired && vehicle?.taxAmount) {
+        <div class="tax-renewal-section">
+          <div class="tax-info">
+            <h3 class="tax-title">Tax Renewal Required</h3>
+            <p class="tax-amount">Amount: ₹{{ vehicle?.taxAmount }}</p>
+          </div>
+          <button class="renew-btn" (click)="renewTax(vehicle?.id)">
+            <span class="btn-text">Renew Tax</span>
+          </button>
+        </div>
+      }
+    </div>
+
+    @if (vehicle?.violations && vehicle?.violations!.length > 0) {
+      <div class="violations-section">
+        <h3 class="section-title">Violations ({{ vehicle?.totalViolations }})</h3>
+        <div class="violations-grid">
+          @for (violation of vehicle?.violations!; track $index; let i = $index) {
+            <div class="violation-card" [class.paid]="violation.paid" [class.unpaid]="!violation.paid">
+              <div class="violation-header">
+                <span class="violation-number">#{{ i + 1 }}</span>
+                <span class="violation-status" [class.paid]="violation.paid">
+                  {{ violation.paid ? "Paid" : "Unpaid" }}
+                </span>
+              </div>
+              <div class="violation-details">
+                <p class="violation-type">{{ violation.type }}</p>
+                <p class="violation-due">Due: {{ violation.dueDate }}</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    }
+
+    <div class="action-section">
+      <button class="back-btn" (click)="changePath()">
+        <span class="btn-icon">←</span>
+        <span class="btn-text">Back to Vehicles</span>
+      </button>
+    </div>
+  </div>
+</div>

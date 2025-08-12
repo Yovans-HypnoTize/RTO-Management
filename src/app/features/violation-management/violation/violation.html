@@ -1,0 +1,50 @@
+<div class="violation-container">
+  <div class="header-section">
+    <div class="title-section">
+      <h1 class="page-title">Violations</h1>
+      <p class="page-subtitle">Manage and view all registered violations</p>
+    </div>
+    <button class="add-violation-btn" (click)="changePath()">
+      <span class="btn-icon">+</span>
+      <span class="btn-text">Add Violation</span>
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table class="violation-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Driver ID</th>
+          <th>Vehicle ID</th>
+          <th>Violation Type</th>
+          <th>Created By</th>
+          <th>Officer ID</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of violations; track $index) {
+        <tr class="table-row">
+          <td class="id-cell">{{ $index + 1 }}</td>
+          <td class="driver-cell">{{ item.driverId }}</td>
+          <td class="vehicle-cell">{{ item.vehicleId }}</td>
+          <td class="type-cell">{{ item.violationType }}</td>
+          <td class="created-cell">{{ item.createdBy }}</td>
+          <td class="officer-cell">{{ item.createdByOfficerId }}</td>
+          <td class="actions-cell">
+            <button
+              type="button"
+              class="view-btn"
+              (click)="handleViolationPath(item.id)"
+            >
+              <span class="btn-icon">👁️</span>
+              <span class="btn-text">View</span>
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

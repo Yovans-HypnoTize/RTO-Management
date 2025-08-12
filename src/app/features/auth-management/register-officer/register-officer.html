@@ -1,0 +1,122 @@
+<div class="register-container">
+  <div class="auth-card">
+    <div class="card-header">
+      <h1 class="page-title">Join Our Team</h1>
+      <p class="page-subtitle">Register as a new officer in the system</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form-content">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name" class="form-label">Full Name</label>
+          <input 
+            id="name"
+            type="text" 
+            formControlName="name" 
+            placeholder="Enter your full name" 
+            class="form-input"
+            [class.error]="isInvalid('name')"
+          />
+          @if (isInvalid("name")) {
+            <p class="error-message">{{ getErrorMessage("name") }}</p>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address</label>
+          <input 
+            id="email"
+            type="email" 
+            formControlName="email" 
+            placeholder="Enter your email address" 
+            class="form-input"
+            [class.error]="isInvalid('email')"
+          />
+          @if (isInvalid("email")) {
+            <p class="error-message">{{ getErrorMessage("email") }}</p>
+          }
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input
+            id="password"
+            type="password"
+            formControlName="password"
+            placeholder="Create a strong password"
+            class="form-input"
+            [class.error]="isInvalid('password')"
+          />
+          @if (isInvalid("password")) {
+            <p class="error-message">{{ getErrorMessage("password") }}</p>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="badgeNumber" class="form-label">Badge Number</label>
+          <input
+            id="badgeNumber"
+            type="text"
+            formControlName="badgeNumber"
+            placeholder="Enter badge number"
+            class="form-input"
+            [class.error]="isInvalid('badgeNumber')"
+          />
+          @if (isInvalid("badgeNumber")) {
+            <p class="error-message">{{ getErrorMessage("badgeNumber") }}</p>
+          }
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="joiningDate" class="form-label">Joining Date</label>
+          <input
+            id="joiningDate"
+            type="date"
+            formControlName="joiningDate"
+            class="form-input"
+            [class.error]="isInvalid('joiningDate')"
+          />
+          @if (isInvalid("joiningDate")) {
+            <p class="error-message">{{ getErrorMessage("joiningDate") }}</p>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="role" class="form-label">Role</label>
+          <select 
+            id="role"
+            formControlName="role"
+            class="form-select"
+            [class.error]="isInvalid('role')"
+          >
+            <option value="" disabled selected hidden>Select your role</option>
+            <option value="CLERK">Clerk</option>
+            <option value="SUPERINTENDENT">Superintendent</option>
+            <option value="INSPECTOR">Inspector</option>
+          </select>
+          @if (isInvalid("role")) {
+            <p class="error-message">{{ getErrorMessage("role") }}</p>
+          }
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button type="submit" class="submit-btn">
+          <span class="btn-text">Create Account</span>
+        </button>
+        <button type="button" class="secondary-btn" (click)="goToLogin()">
+          <span class="btn-text">Back to Login</span>
+        </button>
+      </div>
+    </form>
+
+    <div class="auth-footer">
+      <p class="footer-text">Already have an account?</p>
+      <button class="link-btn" (click)="goToLogin()">Sign in here</button>
+    </div>
+  </div>
+</div>

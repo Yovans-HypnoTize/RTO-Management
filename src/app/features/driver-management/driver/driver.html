@@ -1,0 +1,97 @@
+<div class="driver-container">
+  @if (loading) {
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Loading drivers...</p>
+    </div>
+  } @else if (error) {
+    <div class="error-container">
+      <div class="error-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="15" y1="9" x2="9" y2="15"></line>
+          <line x1="9" y1="9" x2="15" y2="15"></line>
+        </svg>
+      </div>
+      <h2 class="error-title">Error Loading Drivers</h2>
+      <p class="error-message">{{ error }}</p>
+      <button class="retry-btn" (click)="retry()">Try Again</button>
+    </div>
+  } @else {
+    <div class="header-section">
+      <div class="title-section">
+        <h1 class="page-title">Drivers</h1>
+        <p class="page-subtitle">Manage and view all registered drivers in the system</p>
+      </div>
+      <div class="actions-section">
+        <button class="toggle-btn" (click)="toggleExpiredLicense()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12,6 12,12 16,14"></polyline>
+          </svg>
+          {{ isShowingUnpaid ? "Show All Drivers" : "Show Expired Licenses" }}
+        </button>
+        <button class="add-driver-btn" (click)="changePath()">
+          <span class="btn-icon">+</span>
+          <span class="btn-text">Add Driver</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="driver-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>License No.</th>
+            <th>Expiry Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @if (drivers.length === 0) {
+            <tr>
+              <td colspan="6" class="empty-state">
+                <div class="empty-content">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                  </svg>
+                  <h3>No Drivers Found</h3>
+                  <p>{{ isShowingUnpaid ? 'No expired licenses found.' : 'No drivers registered yet.' }}</p>
+                </div>
+              </td>
+            </tr>
+          } @else {
+            @for (item of drivers; track $index) {
+              <tr>
+                <td class="id-cell">{{ $index + 1 }}</td>
+                <td class="name-cell">{{ item.name }}</td>
+                <td class="dob-cell">{{ item.dob }}</td>
+                <td class="license-cell">{{ item.licenseNumber }}</td>
+                <td class="expiry-cell">{{ item.licenseExpiryDate }}</td>
+                <td class="actions-cell">
+                  <button
+                    type="button"
+                    class="view-btn"
+                    (click)="handleDriverPath(item.driverId)"
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                      <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                    <span class="btn-text">View</span>
+                  </button>
+                </td>
+              </tr>
+            }
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

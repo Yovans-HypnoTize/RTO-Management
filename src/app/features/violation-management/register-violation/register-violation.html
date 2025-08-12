@@ -1,0 +1,79 @@
+<div class="register-violation-container">
+  <div class="form-card">
+    <div class="card-header">
+      <h1 class="page-title">Register Violation</h1>
+      <p class="page-subtitle">Add a new violation to the system</p>
+    </div>
+    
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form-content">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="driverId" class="form-label">Driver</label>
+          <select 
+            id="driverId"
+            formControlName="driverId"
+            class="form-select"
+          >
+            <option value="" disabled selected hidden>Select Driver</option>
+            @for (driver of driverOptions; track driver.id) {
+            <option [value]="driver.id">
+              {{ driver.value }}
+            </option>
+            }
+          </select>
+          @if (isInvalid("driverId")) {
+            <p class="error-message">{{ getErrorMessage("driverId") }}</p>
+          }
+        </div>
+        
+        <div class="form-group">
+          <label for="vehicleId" class="form-label">Vehicle</label>
+          <select 
+            id="vehicleId"
+            formControlName="vehicleId"
+            class="form-select"
+          >
+            <option value="" disabled selected hidden>Select Vehicle</option>
+            @for (vehicle of vehicleOptions; track vehicle.id) {
+            <option [value]="vehicle.id">
+              {{ vehicle.value }}
+            </option>
+            }
+          </select>
+          @if (isInvalid("vehicleId")) {
+            <p class="error-message">{{ getErrorMessage("vehicleId") }}</p>
+          }
+        </div>
+      </div>
+
+      <div class="form-group full-width">
+        <label for="violationType" class="form-label">Violation Type</label>
+        <select 
+          id="violationType"
+          formControlName="violationType"
+          class="form-select"
+        >
+          <option value="" disabled selected hidden>Select Violation Type</option>
+          <option value="NO_HELMET">No Helmet</option>
+          <option value="SPEEDING">Speeding</option>
+          <option value="SIGNAL_JUMP">Signal Jump</option>
+          <option value="NO_PARKING">No Parking</option>
+        </select>
+        @if (isInvalid("violationType")) {
+          <p class="error-message">{{ getErrorMessage("violationType") }}</p>
+        }
+      </div>
+      
+      <div class="form-actions">
+        <button type="submit" class="submit-btn">
+          <span class="btn-icon">✓</span>
+          <span class="btn-text">Register Violation</span>
+        </button>
+        <button type="button" class="back-btn" (click)="changePath()">
+          <span class="btn-icon">←</span>
+          <span class="btn-text">Go Back</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
